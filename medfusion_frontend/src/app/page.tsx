@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
+import RegionMap from "@/components/RegionMap";
 import {
   LineChart, Line, AreaChart, Area, BarChart, Bar,
   XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine,
@@ -588,28 +589,11 @@ export default function MedFusion() {
                 {/* Right: region breakdown + India */}
                 <div className="space-y-4">
                   {Object.keys(epi.region_breakdown || {}).length > 0 && (
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4">
-                      <div className="text-[10px] font-mono tracking-widest text-zinc-500 mb-3 uppercase">Regional Distribution</div>
-                      <div className="space-y-2">
-                        {Object.entries(epi.region_breakdown)
-                          .sort(([,a],[,b]) => (b as number) - (a as number))
-                          .slice(0, 6)
-                          .map(([region, val]: any) => {
-                            const max = Math.max(...Object.values(epi.region_breakdown) as number[]);
-                            return (
-                              <div key={region}>
-                                <div className="flex justify-between text-[10px] font-mono text-zinc-400 mb-1">
-                                  <span className="truncate">{region}</span>
-                                  <span className="text-zinc-500 flex-shrink-0 ml-2">{fmt(val)}</span>
-                                </div>
-                                <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
-                                  <div className="h-full bg-cyan-500/60 rounded-full" style={{ width:`${(val/max)*100}%` }} />
-                                </div>
-                              </div>
-                            );
-                          })}
-                      </div>
-                    </div>
+                    <RegionMap
+                      regionBreakdown={epi.region_breakdown}
+                      disease={epi.disease || query}
+                      dataSource={epi.data_source}
+                    />
                   )}
 
                   {/* India context */}
