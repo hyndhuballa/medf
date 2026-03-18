@@ -1,7 +1,5 @@
 # MedFusion - Disease Intelligence Dashboard
 
-> **MedFusion Hackfest 2026 · Mahindra University, Hyderabad**  
-> *Interactive Intelligent Dashboard for Disease Surveillance*
 
 MedFusion is a full-stack disease surveillance platform that unifies real-time data from 12 public health sources — WHO, CDC, ECDC, ProMED, HealthMap, Open Targets, PubChem, and more — into a single intelligent interface. It goes beyond displaying raw data: every output is processed, fused across sources, and explained with scientific rationale.
 
